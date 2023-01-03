@@ -5,7 +5,7 @@ include("inc/init.inc.php");
 
 $title = "Connexion";
 //print_r($_COOKIE);
-print_r($_SESSION);
+//print_r($_SESSION);
 
 if (isset($_GET["message"]) && $_GET["message"] == "empty_user")
 {
@@ -50,7 +50,9 @@ include("inc/head.inc.php");
 ?>
 
 		<h1 class="text-center my-5">Connexion</h1>
-		<?= $msg; ?>
+		<?= isset($_SESSION["message"]) ? $_SESSION["message"] : ""; 
+			$_SESSION["message"] = "";
+		?>
 		<form method="post" action="profil.php" class="w-50 mx-auto">
 			<div class="form-floating mb-3">
 			 	<input type="text" class="form-control" id="user" placeholder="admin" name="user" value="<?=isset($_COOKIE["login"]) ? $_COOKIE["login"] : "";?>">
