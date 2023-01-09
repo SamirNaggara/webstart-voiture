@@ -7,38 +7,6 @@ $title = "Connexion";
 //print_r($_COOKIE);
 //print_r($_SESSION);
 
-if (isset($_GET["message"]) && $_GET["message"] == "empty_user")
-{
-	$msg = "<div class=\"alert alert-danger w-50 mx-auto\" role=\"alert\">
-  				SVP, veuillez remplir le champs login
-			</div>";
-}
-
-if (isset($_GET["message"]) && $_GET["message"] == "empty_pswd")
-{
-	$msg = "<div class=\"alert alert-danger w-50 mx-auto\" role=\"alert\">
-  				SVP, veuillez remplir le champs mot de passe
-			</div>";
-}
-
-if (isset($_GET["message"]) && $_GET["message"] == "error_auth")
-{
-	$msg = "<div class=\"alert alert-danger w-50 mx-auto\" role=\"alert\">
-  				Login ou Mot de passe incorrect
-			</div>";
-}
-
-// if (isset($_COOKIE["login"]))
-// {
-// 	echo $_COOKIE["login"];
-// }
-
-// echo (TEST) ? (TRUE) : (FALSE)
-
-
-
-
-
 
 include("inc/head.inc.php");
 // include_once("inc/head.inc.php"); Pour etre sur qu'il apparait juste une fois
