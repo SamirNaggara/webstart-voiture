@@ -13,5 +13,8 @@ $pass = "root";
 $bdd = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
 
 
+define("URL", "http://localhost:8888/php-cours/voiture/");
+define("ASSETS", URL . "assets/");
+
 
 

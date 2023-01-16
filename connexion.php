@@ -1,14 +1,30 @@
 <?php 
 
 include("inc/init.inc.php");
+include("inc/functions.inc.php");
+
 
 
 $title = "Connexion";
 //print_r($_COOKIE);
 //print_r($_SESSION);
 
+if (isset($_GET["action"]) && $_GET["action"] == "deconnexion")
+{
+	session_destroy();
+	header("location:" . URL . "connexion.php");
+	exit;
+}
+
+if (isConnect())
+{
+	header("location:" . URL . "profil.php");
+	exit;
+}
 
 include("inc/head.inc.php");
+include("inc/header.inc.php");
+
 // include_once("inc/head.inc.php"); Pour etre sur qu'il apparait juste une fois
 //require("inc/hea.inc.php"); // Si le fichier n'est pas trouvé, on envoie une erreur fatal
 //require_once("inc/hea.inc.php"); // Require + il apparait juste une fois

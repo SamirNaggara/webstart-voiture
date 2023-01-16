@@ -1,6 +1,13 @@
 <?php
 
 include("inc/init.inc.php");
+include("inc/functions.inc.php");
+
+if (isConnect())
+{
+	header("location:" . URL . "profil.php");
+	exit;
+}
 
 
 $title = "Inscription";
@@ -102,6 +109,7 @@ if(!empty($_POST)){ //On appelle les portiers que si le formulaire est validé
 
 
 include("inc/head.inc.php");
+include("inc/header.inc.php");
 
 
 ?>

@@ -1,13 +1,14 @@
 <?php 
 
 include("inc/init.inc.php");
+include("inc/functions.inc.php");
 
 
 $title = "Profil";
 
 //echo time();
 
-include("inc/head.inc.php");
+
 
 // Si il n'y a pas de session, on fait toutes les vérifs
 // Sinon, on passe directe sur la page
@@ -49,7 +50,8 @@ if (!isset($_SESSION["user"]))
 	$_SESSION["user"] = $_POST["user"];
 }
 
-
+include("inc/head.inc.php");
+include("inc/header.inc.php");
 
 
 
