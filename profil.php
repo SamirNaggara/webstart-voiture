@@ -31,13 +31,64 @@ if (!isset($_SESSION["user"]))
 			</div>";
 	}
 
+	// On fait la requete en base de donnee que si les 2 premiers portier n'ont pas vue d'erreurs
+	if (!empty($_SESSION["message"]))
+	{
+		header('Location: connexion.php');
+		exit();
+	}
 
-	if ($_POST["user"] != "admin" || $_POST["password"] != "pikachu")
+	// On fait la requete en base de donne avec le login
+
+	$login = strtolower(htmlspecialchars($_POST["user"]));
+	$password = htmlspecialchars($_POST["password"]);
+
+
+	$requete = "SELECT * FROM user WHERE login = ?";
+
+	$requetePreparee = $bdd->prepare($requete);
+
+	$reponse = $requetePreparee->execute([
+			$login
+		]);
+
+	if (!$reponse)
 	{
 		$_SESSION["message"] .= "<div class=\"alert alert-danger w-50 mx-auto\" role=\"alert\">
-  				Login ou Mot de passe incorrect
+  				Il y a eu un probleme avec l'execution de la requete
 			</div>";
+		header('Location: connexion.php');
+		exit();
 	}
+
+	// Si le login n'existe pas en bdd, message d'erreur
+	if ($requetePreparee->rowCount() == 0)
+	{
+		$_SESSION["message"] .= "<div class=\"alert alert-danger w-50 mx-auto\" role=\"alert\">
+  				Votre login n'existe pas
+			</div>";
+		header('Location: connexion.php');
+		exit();
+	}
+
+	// Si le user existe, on verifie le mdp
+	if ($requetePreparee->rowCount() == 1)
+	{
+		$userFromBdd = $requetePreparee->fetch(PDO::FETCH_ASSOC);
+		//echo "<pre>";
+		//print_r($userFromBdd);
+		//echo "</pre>";
+
+		$hach_password = $userFromBdd["password"];
+		if (!password_verify($password, $hach_password))
+		{
+			$_SESSION["message"] .= "<div class=\"alert alert-danger w-50 mx-auto\" role=\"alert\">
+  				Votre mdp est incorrect
+			</div>";
+		}
+	
+	}
+
 
 
 	if (!empty($_SESSION["message"]))

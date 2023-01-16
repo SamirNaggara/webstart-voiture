@@ -3,6 +3,7 @@
 include("inc/init.inc.php");
 include("inc/functions.inc.php");
 
+
 if (isConnect())
 {
 	header("location:" . URL . "profil.php");
@@ -67,7 +68,7 @@ if(!empty($_POST)){ //On appelle les portiers que si le formulaire est validé
 
 		$user = strtolower(htmlspecialchars($_POST["user"]));
 		$email = strtolower(htmlspecialchars($_POST["email"]));
-		$password = htmlspecialchars($_POST["password"]);
+		$password = password_hash(htmlspecialchars($_POST["password"]), PASSWORD_DEFAULT);
 		$prenom = strtolower(htmlspecialchars($_POST["prenom"]));
 		$nom = strtolower(htmlspecialchars($_POST["nom"]));
 		$telephone = htmlspecialchars($_POST["number"]);
