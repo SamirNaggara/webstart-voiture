@@ -29,6 +29,14 @@
             </li>
           <?php
         }
+        if (isAdmin())
+        {
+          ?>
+          <li class="nav-item">
+              <a class="nav-link" href="<?=URL?>admin/user.php">Liste utilisateur</a>
+          </li>
+          <?php
+        }
         ?>
       </ul>
       <?php 
