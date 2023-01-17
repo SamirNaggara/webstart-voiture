@@ -75,9 +75,10 @@ if (!isset($_SESSION["user"]))
 	if ($requetePreparee->rowCount() == 1)
 	{
 		$userFromBdd = $requetePreparee->fetch(PDO::FETCH_ASSOC);
-		//echo "<pre>";
-		//print_r($userFromBdd);
-		//echo "</pre>";
+		// echo "<pre>";
+		// print_r($userFromBdd);
+		// echo "</pre>";
+		// die;
 
 		$hach_password = $userFromBdd["password"];
 		if (!password_verify($password, $hach_password))
@@ -98,7 +99,7 @@ if (!isset($_SESSION["user"]))
 	}
 
 	setcookie("login", $_POST["user"], time() + 3 * 30 * 24 * 60 * 60);
-	$_SESSION["user"] = $_POST["user"];
+	$_SESSION["user"] = $userFromBdd;
 }
 
 include("inc/head.inc.php");

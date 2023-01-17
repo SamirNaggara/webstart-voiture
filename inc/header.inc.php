@@ -4,7 +4,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarNav">
       <ul class="navbar-nav">
         <?php 
         if (!isConnect())
@@ -31,6 +31,14 @@
         }
         ?>
       </ul>
+      <?php 
+        if (isConnect())
+        {
+          ?>
+          <p class="text-white m-0">Bonjour <?=ucfirst($_SESSION["user"]["prenom"])?></p>
+          <?php
+        }
+      ?>
     </div>
   </div>
 </nav>
