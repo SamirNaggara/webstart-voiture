@@ -29,7 +29,7 @@ $reponse = $requetePreparee->execute();
 if (!$reponse)
 {
 	$_SESSION["message"] .= "<div class=\"alert alert-danger w-50 mx-auto\" role=\"alert\">
-			  Grillé ! Vous n'avez pas accès à cette page !
+			  Quelque chose ne s'est pas déroulé correctement pendant la requete
 		</div>";
 
 }
@@ -47,8 +47,14 @@ if ($reponse)
 include("../inc/head.inc.php");
 include("../inc/header.inc.php");
 
+// echo "<pre>";
+// print_r($allUsers);
+// echo "</pre>";
+
+
 
 ?>
+
 
 <h1 class="text-center my-5">Liste utilisateur</h1>
 
@@ -61,6 +67,7 @@ include("../inc/header.inc.php");
 			      <th scope="col">Login</th>
 			      <th scope="col">Email</th>
 			      <th scope="col">Statut</th>
+			      <th scope="col">Actions</th>
 		    </tr>
 	  </thead>
 	  <tbody class="table-striped">
@@ -75,7 +82,17 @@ include("../inc/header.inc.php");
 	  					<td><?=$user["prenom"]?></td>
 	  					<td><?=$user["login"]?></td>
 	  					<td><?=$user["mail"]?></td>
-	  					<td><?=$user["statut"]?></td>
+	  					<td><?=$user["statut"] ? "Administrateur" : ""?></td>
+	  					<td>
+	  						<?php 
+	  							if ($user["statut"] == 0)
+	  							{
+	  								?>
+	  								<a href="<?=URL?>admin/gestion_admin.php?id=<?=$user["id_user"]?>" class="btn btn-secondary">Devenir administrateur</a>
+	  								<?php
+	  							}
+	  							?>
+	  					</td>
 	  				</tr>
 	  				<?php
 	  			}
