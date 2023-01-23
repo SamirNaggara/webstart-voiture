@@ -57,8 +57,10 @@ include("../inc/header.inc.php");
 
 
 <h1 class="text-center my-5">Liste utilisateur</h1>
-
-<table class="table table-striped">
+<?= isset($_SESSION["message"]) ? $_SESSION["message"] : ""; 
+			$_SESSION["message"] = "";
+		?>
+<table class="table table-striped container">
 	  <thead>
 		    <tr>
 			      <th scope="col">Id</th>
@@ -88,7 +90,13 @@ include("../inc/header.inc.php");
 	  							if ($user["statut"] == 0)
 	  							{
 	  								?>
-	  								<a href="<?=URL?>admin/gestion_admin.php?id=<?=$user["id_user"]?>" class="btn btn-secondary">Devenir administrateur</a>
+	  								<a href="<?=URL?>admin/gestion_admin.php?action=nommer_admin&id=<?=$user["id_user"]?>" class="btn btn-secondary">Devenir administrateur</a>
+	  								<?php
+	  							}
+	  							if ($user["statut"] == 0)
+	  							{
+	  								?>
+	  								<a href="<?=URL?>admin/gestion_admin.php?action=delete&id=<?=$user["id_user"]?>" class="btn btn-danger">Supprimer</a>
 	  								<?php
 	  							}
 	  							?>
